@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
 import Login from './components/Auth/Login';
 import EmployeeDashboard from './components/Dashboard/EmployeeDashboard';
 import AdminDashboard from './components/Dashboard/AdminDashboard';
-import { useEffect } from 'react';
-import { getLocalStorage, setLocalStorage } from './utils/LocalStorage';
+import { useEffect,useState } from 'react';
+
 
 function App() {
 
+const [user, setUser] = useState(null);
+  const handleLogin=(email,password)=>{
+if(email === 'admin@me.com' && password ==='123'){
+setUser('admin')
+}
 
-  useEffect(() => {
-    //setLocalStorage() 
-    getLocalStorage()
-  },)
-  
+else if (email === 'user@me.com' && password ==='123'){
+setUser('employee')
+}
+
+else{
+  alert('Invalid Credentials')
+}
+
+  }
   return (
     <>
-      <Login />
-     {/*  <EmployeeDashboard/> */}
-    {/*  <AdminDashboard/> */}
+     {!user ?<Login handleLogin={handleLogin}/> : ""}
+     {user==='admin' ?<AdminDashboard/>:<EmployeeDashboard/>}
     </>
   );
 }

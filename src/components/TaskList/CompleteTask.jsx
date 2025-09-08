@@ -17,5 +17,4 @@ const CompleteTask = () => {
             </div>
   )
 }
-
 export default CompleteTask

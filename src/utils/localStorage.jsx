@@ -1,9 +1,16 @@
-
+localStorage.clear()
 const employees = [
     {
         "id": 1,
-        "email": "employee1@example.com",
+        "firstname": "Aarav",
+        "email": "e@e.com",
         "password": "123",
+        "taskNumbers": {
+            "active": 1,
+            "new_task": 1,
+            "completed": 1,
+            "failed": 0
+        },
         "tasks": [
             {
                 "title": "Prepare monthly report",
@@ -39,8 +46,15 @@ const employees = [
     },
     {
         "id": 2,
+        "firstname": "Ishaan",
         "email": "employee2@example.com",
         "password": "123",
+        "taskNumbers": {
+            "active": 1,
+            "new_task": 1,
+            "completed": 1,
+            "failed": 1
+        },
         "tasks": [
             {
                 "title": "Inventory check",
@@ -86,8 +100,15 @@ const employees = [
     },
     {
         "id": 3,
+        "firstname": "Vihaan",
         "email": "employee3@example.com",
         "password": "123",
+        "taskNumbers": {
+            "active": 1,
+            "new_task": 1,
+            "completed": 0,
+            "failed": 1
+        },
         "tasks": [
             {
                 "title": "Schedule training",
@@ -123,8 +144,15 @@ const employees = [
     },
     {
         "id": 4,
+        "firstname": "Aditya",
         "email": "employee4@example.com",
         "password": "123",
+        "taskNumbers": {
+            "active": 1,
+            "new_task": 1,
+            "completed": 1,
+            "failed": 1
+        },
         "tasks": [
             {
                 "title": "Code review",
@@ -170,8 +198,15 @@ const employees = [
     },
     {
         "id": 5,
+        "firstname": "Kabir",
         "email": "employee5@example.com",
         "password": "123",
+        "taskNumbers": {
+            "active": 1,
+            "new_task": 1,
+            "completed": 1,
+            "failed": 0
+        },
         "tasks": [
             {
                 "title": "Marketing campaign",
@@ -206,11 +241,14 @@ const employees = [
         ]
     }
 ];
-const admin = [{
-    "id": 1,
-    "email": "admin@example.com",
-    "password": "123"
-}]
+
+const admin = [
+    {
+        "id": 1,
+        "email": "admin@me.com",
+        "password": "123"
+    }
+];
 
 export const setLocalStorage = () => {
     localStorage.setItem('employees', JSON.stringify(employees))

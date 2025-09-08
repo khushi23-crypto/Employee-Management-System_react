@@ -17,5 +17,4 @@ const FailedTask = () => {
             </div>
   )
 }
-
 export default FailedTask

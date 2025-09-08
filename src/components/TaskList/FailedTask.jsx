@@ -1,16 +1,16 @@
 import React from 'react'
 
-const FailedTask = () => {
+const FailedTask = ({data}) => {
   return (
     <div className=' flex-shrink-0 h-full w-[300px] bg-yellow-400 rounded-xl'>
                 <div className='flex justify-between items-center '>
-                    <h3 className='bg-yellow-600 text-sm px-3 py-1 rounded'>High</h3>
-                    <h4 className='text-sm'>07-sep-2025</h4>
+                    <h3 className='bg-blue-600 text-sm px-3 py-1 rounded'>{data.category}</h3>
+                    <h4 className='text-sm'>{data.date}</h4>
                 </div>
-                <h2 className='mt-5 text-2xl font-semibold'>Make a youtube video</h2>
-                <p className='text-sm mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque ex quo ratione sapiente reprehenderit! Unde.</p>
+                <h2 className='mt-5 text-2xl font-semibold'>{data.title}</h2>
+                <p className='text-sm mt-2'>{data.description}</p>
                 <div className='mt-2'>
-                    <button className='w-full'>
+                    <button className='w-full bg-yellow-500 rounded font-medium py-1 px-2  text-xs'>
                         Failed
                     </button>
                 </div>

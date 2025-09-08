@@ -15,5 +15,4 @@ const NewTask = () => {
             </div>
   )
 }
-
 export default NewTask

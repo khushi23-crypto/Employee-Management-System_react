@@ -1,4 +1,3 @@
-localStorage.clear()
 const employees = [
     {
         "id": 1,
@@ -75,27 +74,8 @@ const employees = [
                 "new_task": true,
                 "completed": false,
                 "failed": false
-            },
-            {
-                "title": "Customer feedback",
-                "description": "Compile feedback from last week.",
-                "date": "2025-09-11",
-                "category": "Research",
-                "active": false,
-                "new_task": false,
-                "completed": true,
-                "failed": false
-            },
-            {
-                "title": "Bug fixing",
-                "description": "Resolve login page error.",
-                "date": "2025-09-13",
-                "category": "Development",
-                "active": false,
-                "new_task": false,
-                "completed": false,
-                "failed": true
             }
+            
         ]
     },
     {
@@ -174,26 +154,7 @@ const employees = [
                 "completed": false,
                 "failed": false
             },
-            {
-                "title": "Code optimization",
-                "description": "Optimize database queries for better performance.",
-                "date": "2025-09-13",
-                "category": "Development",
-                "active": false,
-                "new_task": false,
-                "completed": true,
-                "failed": false
-            },
-            {
-                "title": "Prepare demo",
-                "description": "Set up demo environment for client presentation.",
-                "date": "2025-09-15",
-                "category": "Presentation",
-                "active": false,
-                "new_task": false,
-                "completed": false,
-                "failed": true
-            }
+            
         ]
     },
     {

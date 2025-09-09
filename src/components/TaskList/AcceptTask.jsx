@@ -16,5 +16,4 @@ const AcceptTask = ({data}) => {
             </div>
   )
 }
-
 export default AcceptTask

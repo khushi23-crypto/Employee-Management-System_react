@@ -1,52 +1,86 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from "react";
+import { loginUser } from "../../utils/api"; // ✅ correct import path
 
+const Login = ({ handleLogin }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-const Login = ({handleLogin}) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
+    try {
+      // ✅ Call the backend via utils/api.js
+      const response = await loginUser({ email, password });
 
-    const submitHandler = (e) => {
-        e.preventDefault()
-        handleLogin(email,password)
-        setEmail("")
-        setPassword("")
+      // Example: backend returns { token, user }
+      if (response.token) {
+        handleLogin(response.user, response.token);
+      } else {
+        setError("Invalid credentials or unexpected response");
+      }
+
+      setEmail("");
+      setPassword("");
+    } catch (err) {
+      console.error(err);
+      setError("Login failed. Please check your email and password.");
+    } finally {
+      setLoading(false);
     }
-    
+  };
 
-    return (
-        <div className='flex h-screen w-screen items-center justify-center '>
-            <div className='border-2 border-emerald-600 p-20 rounded-xl'>
-                <form
-                    onSubmit={(e) => {
-                        submitHandler(e)
-                    }}
-                    className='flex flex-col items-center justify-center'>
+  return (
+    <div className="flex h-screen w-screen items-center justify-center bg-[#0f0f0f]">
+      <div className="border-2 border-emerald-600 p-12 rounded-2xl shadow-lg">
+        <form
+          onSubmit={submitHandler}
+          className="flex flex-col items-center justify-center"
+        >
+          <h1 className="text-3xl font-semibold text-emerald-400 mb-6">
+            Employee Login
+          </h1>
 
-                    <input
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value)
-                        }}
-                        required
-                         className='text-white outline-none bg-transparent border-2 border-emerald-600 rounded-full py-3 px-5 text-xl placeholder:text-gray-400  ' type='email' placeholder='Enter your email' />
+          {error && (
+            <p className="text-red-500 text-sm mb-4 bg-red-500/10 p-2 rounded-md">
+              {error}
+            </p>
+          )}
 
-                    <input
-                        value={password}
-                        onChange={(e)=>{
-                            setPassword(e.target.value)
-                        }}
-                        required
-                         className='text-white outline-none bg-transparent border-2 border-emerald-600 rounded-full py-3 px-5 text-xl placeholder:text-gray-400 mt-4' type='password' placeholder='Enter Password' />
-                    <button 
-                    
-                    className=' mt-5 text-white outline-none  border-2 bg-emerald-600 rounded-full py-3 px-5 text-xl placeholder:text-white  border-none'>Log in</button>
-                </form>
-            </div>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="text-white outline-none bg-transparent border-2 border-emerald-600 rounded-full py-3 px-5 text-xl placeholder:text-gray-400 w-72"
+            type="email"
+            placeholder="Enter your email"
+          />
 
-        </div>
-    )
-}
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="text-white outline-none bg-transparent border-2 border-emerald-600 rounded-full py-3 px-5 text-xl placeholder:text-gray-400 mt-4 w-72"
+            type="password"
+            placeholder="Enter password"
+          />
 
-export default Login
+          <button
+            type="submit"
+            disabled={loading}
+            className={`mt-6 text-white border-2 border-emerald-600 bg-emerald-600 hover:bg-emerald-700 rounded-full py-3 px-8 text-xl transition-all ${
+              loading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
